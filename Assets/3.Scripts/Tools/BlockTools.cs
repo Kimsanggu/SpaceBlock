@@ -125,3 +125,77 @@ public struct iVector3
         return x.ToString() + "," + y.ToString() + "," + z.ToString();
     }
 }
+[Serializable]
+public struct iVector2
+{
+    public int x;
+    public int y;
+
+    public iVector2(int _x, int _y)
+    {
+        x = _x;
+        y = _y;
+    }
+
+    public static iVector2 One
+    {
+        get { return new iVector2(1, 1); }
+    }
+    public static iVector2 Zero
+    {
+        get { return new iVector2(0, 0); }
+    }
+
+    public iVector2 Left
+    {
+        get { return new iVector2(x - 1, y); }
+    }
+    public iVector2 Right
+    {
+        get { return new iVector2(x + 1, y); }
+    }
+    public iVector2 Up
+    {
+        get { return new iVector2(x, y + 1); }
+    }
+    public iVector2 UpLeft
+    {
+        get { return new iVector2(x - 1, y + 1); }
+    }
+    public iVector2 UpRight
+    {
+        get { return new iVector2(x + 1, y + 1); }
+    }
+    public iVector2 Down
+    {
+        get { return new iVector2(x, y - 1); }
+    }
+    public iVector2 DownLeft
+    {
+        get { return new iVector2(x - 1, y - 1); }
+    }
+    public iVector2 DownRight
+    {
+        get { return new iVector2(x + 1, y - 1); }
+    }
+
+    public int Xz  // Zerobase
+    {
+        get { return x - 1; }
+    }
+    public int Yz  // Zerobase
+    {
+        get { return y - 1; }
+    }
+    public bool IsEquals(iVector2 v2)
+    {
+        if (x == v2.x && y == v2.y)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+}

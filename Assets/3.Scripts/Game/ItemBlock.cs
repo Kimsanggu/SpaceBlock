@@ -54,7 +54,6 @@ public class ItemBlock : GameBlock
         if (MissionManager.Instance.bClear) return;
         if (InGameManager.Instance.IsGameOver()) return;
         if (MissionManager.Instance.blockCount <= 0) return;
-        InGameManager.Instance.SetRocketBit(RocketBit.RocketBit_happy);
         MissionManager.Instance.UseBlock();
         Explosion(true);
     }

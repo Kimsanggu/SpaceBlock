@@ -24,11 +24,9 @@ public class BlockSpawner : MonoBehaviour
         switch (spawnList[0])
         {
             case GameBlockType.Bit:
-                //prefab = Instantiate(Resources.Load<GameObject>("Prefabs/BitBlock")).GetComponent<GameBlock>();
                 prefab = PoolManager.Instance.GetPool(PoolType.CharacterBlock).gameObject.GetComponent<GameBlock>();
                 break;
             case GameBlockType.Color:
-                //prefab = Instantiate(Resources.Load<GameObject>("Prefabs/ColorBlock")).GetComponent<GameBlock>();
                 Transform tr = PoolManager.Instance.GetPool(PoolType.ColorBlock);
                 if (tr != null)
                 {

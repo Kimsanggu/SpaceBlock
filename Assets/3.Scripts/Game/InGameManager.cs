@@ -8,14 +8,6 @@ public enum GameState
     Fail,
     Success
 }
-public enum RocketBit
-{
-    RocketBit_idle,
-    RocketBit_happy,
-    RocketBit_sad,
-    RocketBit_happy_loop,
-    RocketBit_sad_loop
-}
 public class InGameManager : MonoBehaviour
 {
     private static InGameManager instance;
@@ -45,8 +37,6 @@ public class InGameManager : MonoBehaviour
     public bool bDelay = false;
     public float delayTime = 0f;
 
-    public Animator rocketBit;
-
     void Awake()
     {
         instance = GetComponent<InGameManager>();
@@ -66,7 +56,6 @@ public class InGameManager : MonoBehaviour
     IEnumerator StartFlow()
     {
         yield return null;
-        SetRocketBit(RocketBit.RocketBit_happy_loop);
         RectTransform rTr = rocket.gameObject.GetComponent<RectTransform>();
         rocket.Fire(1);
         while (rTr.anchoredPosition3D.sqrMagnitude > 10f)
@@ -75,7 +64,6 @@ public class InGameManager : MonoBehaviour
             yield return null;
         }
         SoundManager.Instance.PlayEffect("eff_rocket_stop");
-        SetRocketBit(RocketBit.RocketBit_idle);
         rocket.Bounce();
         rocket.Fire(0);
         
@@ -437,7 +425,6 @@ public class InGameManager : MonoBehaviour
     {
         if (bSuccess)
         {
-            SetRocketBit(RocketBit.RocketBit_happy_loop);
             List<int> indexList = new List<int>();
             for (int i = 0; i < 25; i++)
             {
@@ -525,7 +512,6 @@ public class InGameManager : MonoBehaviour
         }
         else//gameover
         {
-            SetRocketBit(RocketBit.RocketBit_sad_loop);
             SoundManager.Instance.StopBGM();
             SoundManager.Instance.PlayEffect("eff_alert");
             FuelManager.Instance.AllLock(false);
@@ -632,10 +618,6 @@ public class InGameManager : MonoBehaviour
             }
         }
         return count;
-    }
-    public void SetRocketBit(RocketBit type)
-    {
-        rocketBit.Play(type.ToString());
     }
 }
 

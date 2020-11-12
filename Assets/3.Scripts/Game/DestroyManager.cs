@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GC : MonoBehaviour {
+public class DestroyManager : MonoBehaviour {
 	void Start () {
         StartCoroutine("Flow");
 	}
